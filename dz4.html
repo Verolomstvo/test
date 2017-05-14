@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Connect</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        html, body {
+            height:100%;
+        }
+        body {
+            color: purple;
+            font-family: Tahoma;
+        }
+        .header{
+            height: 50px;
+            background: #ffd6f6;
+        }
+        .content{
+            display:flex;
+        }
+        .column_pos_center{
+            width: 80%;
+            background: #e6d4d6;
+        }
+        .column_pos_left{
+            width: 20%;
+            background: #ffbbbd;
+        }
+        .column,
+        .header, {
+            text-align:center;
+        }
+        .second-image{
+            widht: 300px;
+            height: 300px;
+        }
+
+        .page-wrapper {
+            min-height: 100%;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        .slider{
+            width: 300px;
+            margin: 0 auto;
+            margin-top:30px;
+            position: relative;
+        }
+        .slider__previews{
+            display: flex;
+            overflow: auto;
+        }
+        .slider__preview{
+            margin: 10px;
+            cursor: pointer;
+        }
+        .slider__preview:first-child {
+            margin-left:0;
+        }
+        .slider__preview:last-child {
+            margin-right:0;
+        }
+        .slider__arrow{
+            width: 30px;
+            height: 30px;
+            background: red;
+            top: 150px;
+            position: absolute;
+            transform: translateY(-50%)
+        }
+        .slider__arrow_left{
+            left: -40px;
+        }
+        .slider__arrow_right{
+            right: -40px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="page-wrapper">
+    <div class="header"><h1 align="center">Контакты </h1></div>
+    <div class="content">
+        <a id="up"></a>
+
+        <div class="column column_pos_left">
+            <ul>
+                <li>
+                    <a href="dz.html">Обо мне</a>
+                </li>
+                <li>
+                    <a href="dz3.html">O работе</a>
+                </li>
+            </ul>
+        </div>
+        <div class="column column_pos_center">
+            <p align="left"><i>vera@digitalhr.ru</i></p>
+            <p align="left"><b> facebook: Vera Kudryavseva </b></p>
+            <form>
+                <input type="text" name="some-name" placeholder="напишите мне!">
+            </form>
+            <p align="center"> <a href="#"> <img class="second-image" src="https://pp.userapi.com/c624826/v624826617/62f2a/UHk-V9DzONs.jpg" alt=""></a>
+            </p>
+            <div class="slider">
+        <div class="slider__arrow slider__arrow_left"></div>
+        <div class="slider__arrow slider__arrow_right"></div>
+        <div class="slider__big-img">
+            <img class="slider__img" src="https://pp.userapi.com/c629307/v629307617/1e05e/KtahoNTc2EM.jpg" width="300" height="200" alt="">
+        </div>
+
+        <ul class="slider__previews">
+            <li class="slider__preview">
+                <img src="https://pp.userapi.com/c633823/v633823617/105e5/1BR4ohJke7c.jpg" class="slider__img" alt="" idth="60" height="55" />
+            </li>
+            <li class="slider__preview">
+                <img src="https://pp.userapi.com/c633823/v633823617/105f6/Kw3tBh5pEeM.jpg" class="slider__img" alt="" idth="60" height="55"/>
+            </li>
+            <li class="slider__preview">
+                <img src="https://pp.userapi.com/c633823/v633823617/105d3/-6jyjqSACU0.jpg" class="slider__img" alt="" idth="60" height="55"/>
+            </li>
+            <li class="slider__preview">
+                <img src="https://pp.userapi.com/c633823/v633823617/105ee/nUHbQENBnsM.jpg" class="slider__img" alt="" idth="60" height="55"/>
+            </li>
+            <li class="slider__preview">
+                <img src="https://pp.userapi.com/c633823/v633823617/10607/ZBSEMCELX5E.jpg" class="slider__img" alt="" idth="60" height="55" />
+            </li>
+            <li class="slider__preview">
+                <img src="https://pp.userapi.com/c633823/v633823617/10610/pqcYkCufVCQ.jpg" class="slider__img" alt="" idth="60" height="55"/>
+            </li>
+        </ul>
+    </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js">
+
+</script>
+<script>
+    var $bigImg = $('.slider__big-img .slider__img');
+    var $previews = $('.slider__previews');
+    var $preview = $previews.find('.slider__preview');
+    var $previewImg = $('.slider__preview .slider__img');
+
+    var currentIndex = 0;
+
+    $previewImg.on('click', function() {
+        var src = $(this).attr('src');
+
+        $bigImg.fadeOut(function() {
+            $bigImg.attr('src', src);
+        });
+        $bigImg.fadeIn();
+        var currentIndex = $(this).closest('li').index();
+    });
+
+    $('.slider__arrow_right').on('click', function() {
+        if (currentIndex < ( $previewImg.length -1)) {
+            var src= $previewImg.eq(currentIndex+1).attr('src'); $bigImg.attr('src',src) ;
+            currentIndex++;
+        }            })
+
+    $('.slider__arrow_left').on('click', function() {
+        if (currentIndex < ( $previewImg.length -1)) {
+            var src= $previewImg.eq(currentIndex+1).attr('src'); $bigImg.attr('src',src) ;
+            currentIndex--;
+        }        })
+</script>
+</body>
+</html>
+
